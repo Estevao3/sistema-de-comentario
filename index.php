@@ -15,7 +15,7 @@ if(isset($_POST['nome']) && empty($_POST['nome']) == false){
 	$sql->bindValue(":msg",$mensagem);
 	$sql->execute();
 
-	
+	header("Location: index.php");
 }
 ?>
 
