@@ -6,7 +6,7 @@ try{
 	exit;
 }
 
-if(isset($_POST['nome']) && !empty($_POST['nome'])){
+if(isset($_POST['nome']) && empty($_POST['nome']) == false){
 	$nome = $_POST['nome'];
 	$mensagem = $_POST['mensagem'];
 
@@ -14,6 +14,8 @@ if(isset($_POST['nome']) && !empty($_POST['nome'])){
 	$sql->bindValue(":nome",$nome);
 	$sql->bindValue(":msg",$mensagem);
 	$sql->execute();
+
+	
 }
 ?>
 
@@ -32,13 +34,13 @@ if(isset($_POST['nome']) && !empty($_POST['nome'])){
 $sql = "SELECT * FROM mensagens ORDER BY data_msg DESC";
 $sql = $pdo->query($sql);
 if($sql->rowCount() > 0){
-	foreach($sql->fetchAll() as $mensagem);
+	foreach($sql->fetchAll() as $mensagem){
 		?>
-		<strong><?php echo $mensagem['nome']; ?></strong>
-		<?php echo $mensagem['msg']; 
-		?><hr>
+		<strong><?php echo "Enviado por: ".$mensagem['nome']; ?></strong><br>
+		<?php echo "Mensagem: ".$mensagem['msg']; ?>
+		<hr>
 		<?php
-	
+	}
 } else{
 	echo "Não há mensagens";
 }
