@@ -1,3 +1,12 @@
+<?php
+try{
+	$pdo = new PDO("mysql:dbname=projeto_comentarios;host=localhost","root","");
+} catch(PODException $e){
+	echo "ERRO: ".$e->getMessage();
+	exit;
+}
+?>
+
 <fieldset>
 	<form>
 		Nome:<br>
